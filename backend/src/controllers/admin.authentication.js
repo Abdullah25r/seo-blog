@@ -44,12 +44,10 @@ export const login = async (req, res) => {
       { expiresIn: process.env.JWT_EXPIRES_IN || "24h" }
     );
 
-    // Set cookie with token
-    const isProduction = process.env.NODE_ENV === "production";
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: isProduction, // only true on HTTPS
-      sameSite: isProduction ? "None" : "Lax", // "Lax" for dev, "None" for prod
+      secure: false, // only true on HTTPS
+      sameSite: "None", // "Lax" for dev, "None" for prod
       maxAge: 24 * 60 * 60 * 1000,
     });
 
@@ -73,7 +71,7 @@ export const logout = async (req, res) => {
     // Clear the JWT cookie
     res.clearCookie("jwt", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
       sameSite: "None",
     });
 

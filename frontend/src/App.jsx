@@ -17,6 +17,7 @@ const App = () => {
           element={<BlogPost />}
         />
 
+        <Route path="/admin" element={<AdminLogin />} />
         <Route
           path="/dashboard"
           element={
@@ -25,8 +26,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-
-        <Route path="/admin" element={<AdminLogin />} />
       </Routes>
     </div>
   );
