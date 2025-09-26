@@ -46,7 +46,7 @@ export const login = async (req, res) => {
 
     res.cookie("jwt", token, {
       httpOnly: true,
-      secure: false, // only true on HTTPS
+      secure: true, // only true on HTTPS
       sameSite: "None", // "Lax" for dev, "None" for prod
       maxAge: 24 * 60 * 60 * 1000,
     });
@@ -71,7 +71,7 @@ export const logout = async (req, res) => {
     // Clear the JWT cookie
     res.clearCookie("jwt", {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "None",
     });
 
